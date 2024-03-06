@@ -1,0 +1,38 @@
+version: '3.3'
+services:
+  esila:
+    build: .
+    ports:
+      - "80:80" 
+    networks:
+      - net-generik
+
+  ecaller:
+    build: .
+    ports:
+      - 81:80
+    volumes:
+      - app-data:/usr/share/nginx/html/
+    networks:
+      - net-generik
+      - net-hrmis
+
+  dbmy:
+    image: mysql
+    ports:
+      - 3306:3306
+    networks:
+      - net-generik
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ALLOW_EMPTY_ROOT_PASSWORD: 'yes'
+      
+
+volumes:
+  app-data:
+    external: true
+
+networks:
+  net-generik:
+  net-hrmis:
+    external: true

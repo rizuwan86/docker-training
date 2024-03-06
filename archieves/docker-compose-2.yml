@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  eghrmis:
+    build: .
+    ports:
+      - 82:80 
+    networks:
+      - net-hrmis
+
+  myhrmis:
+    build: .
+    ports:
+      - 1433:1433
+    networks:
+      - net-hrmis
+
+
+volumes:
+  app-data:
+    external: true
+
+networks:
+  net-hrmis:

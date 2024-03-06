@@ -1,0 +1,9 @@
+FROM nginx
+
+COPY html/ /usr/share/nginx/html
+
+RUN apt update
+
+RUN apt install -y nano iputils-ping telnet
+
+RUN mkdir /root/docker && touch /root/docker/readme_first.txt
